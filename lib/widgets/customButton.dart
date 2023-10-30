@@ -18,7 +18,7 @@ class _CustomButtonState extends State<CustomButton> {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.blue.shade200), // Set the background color
-        fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width/3, 45)), // Set the width and height
+        fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width/3, 40)), // Set the width and height
       ),
       onPressed:widget.onTap,
       child: Text(

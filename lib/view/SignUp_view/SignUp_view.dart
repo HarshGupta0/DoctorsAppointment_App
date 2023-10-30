@@ -1,7 +1,10 @@
 import 'package:doctors_appointment/constants/strings.dart';
+import 'package:doctors_appointment/view/login_view/login_view.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 class SignUpView extends StatelessWidget {
@@ -10,44 +13,63 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-      body: Container(
-
-          color: Colors.lightBlue.shade200.withBrightness.withOpacity(.3),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                Container(
-                    height: MediaQuery.of(context).size.height/2,
-                    child: Container(
-                        child:LottieBuilder.asset("assets/lottie/lottie2.json",
-                          fit:BoxFit.fitWidth,
-                          width:MediaQuery.of(context).size.width,
-                        ),),
-                ),
-                Container(
-                    height: MediaQuery.of(context).size.height/2,
-                    child:Container(
-                      child: Form(
-                        child: Column(
-                          children: [
-                            Center(child: Text("Welcome Here",style: TextStyle(color: Colors.black45,fontSize: 30,fontWeight: FontWeight.bold),),),
-                            SizedBox(height: 10,),
-                            CustomTextField(hintText: AppStrings.signup, ispassword:false),
-                            CustomTextField(hintText:AppStrings.passwordHint,ispassword:false),
-                            SizedBox(height: 20,),
-                            CustomTextField(hintText: AppStrings.signup, ispassword:false),
-                            CustomTextField(hintText:AppStrings.passwordHint,ispassword:false),
-                            CustomButton(onTap: (){}, ButtonText: AppStrings.signup),
-                          ],
+        child: Scaffold(
+          body: Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.lightBlue.shade200.withBrightness.withOpacity(.3),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2 * .7,
+                      child: Container(
+                        child: LottieBuilder.asset(
+                          "assets/lottie/lottie2.json",
+                          width: MediaQuery.of(context).size.width,
                         ),
                       ),
-                    ) ),
-              ],
-            ),
-          )
-      ),
-    ),);
+                    ),
+                    Container(
+                        child: SingleChildScrollView(
+                          child: Form(
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    " Welcome ",
+                                    style: TextStyle(
+                                        color: Colors.black45,
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                CustomTextField(
+                                    hintText: AppStrings.fullnameHint, ispassword: false),
+                                CustomTextField(
+                                    hintText: AppStrings.emailHint, ispassword: false),
+                                CustomTextField(
+                                    hintText: AppStrings.passwordHint, ispassword: true),
+                                CustomTextField(
+                                    hintText: AppStrings.confirmPassword, ispassword: true),
+                                CustomButton(onTap: () {}, ButtonText: AppStrings.signup),
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                    child: Row(
+                                  children: [
+                                    Text("already have Acc!!"),
+                                    TextButton(onPressed: (){
+                                      Navigator.pop(context);
+                                      },child: Text("Login"),),
+                                  ],
+                                )),
+                              ],
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+              )
+          ),
+        ));
   }
 }
