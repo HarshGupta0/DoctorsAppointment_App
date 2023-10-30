@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   final String hintText;
+  final bool ispassword;
   final TextEditingController ? textEditingController;
 
   CustomTextField({
     required this.hintText,
      this.textEditingController,
+    required this.ispassword ,
     Key? key,
   }) : super(key: key);
 
@@ -21,6 +23,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: EdgeInsets.all(5),
       margin: EdgeInsets.only(left: 10,right: 10,bottom: 10),
       child: TextFormField(
+        obscureText: widget.ispassword,
         controller: widget.textEditingController,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -29,7 +32,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           hintText: widget.hintText,
           hintStyle: TextStyle(
-            color: Colors.black87, // Change the color
+            color: Colors.black45, // Change the color
           ),
           // Use the provided hint text
         ),
