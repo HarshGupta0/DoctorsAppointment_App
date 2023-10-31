@@ -16,7 +16,7 @@ class SignUpView extends StatelessWidget {
         child: Scaffold(
           body: Container(
               height: MediaQuery.of(context).size.height,
-              color: Colors.lightBlue.shade200.withBrightness.withOpacity(.3),
+              color: Colors.lightBlue.shade200.withBrightness,
               child: SingleChildScrollView(
                 child: Column(
                   children: [

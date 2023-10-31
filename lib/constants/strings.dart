@@ -14,5 +14,6 @@ confirmPassword ="Confirm Password",
 login ="Login",
 signup = "Signup",
 alreadyHaveAccount = "Account have an account?",
-dontHaveAccount = "Don't have an account?";
+dontHaveAccount = "Don't have an account?",
+searchHere="Search Now";
 }
