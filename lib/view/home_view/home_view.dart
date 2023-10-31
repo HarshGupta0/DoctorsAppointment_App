@@ -24,10 +24,34 @@ class HomeView extends StatelessWidget {
               Container(
                 color: Colors.lightBlue.shade200.withBrightness,
                 width: MediaQuery.of(context).size.width,
-                child: CustomTextField(
-                  hintText: AppStrings.searchHere,
-                  ispassword: false,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Expanded(child:
+                      CustomTextField(
+                        hintText: AppStrings.searchHere,
+                        ispassword: false,
+                      ),),
+                      Container(
+                        margin: EdgeInsets.only(right: 20,bottom: 20),
+                        child: IconButton(onPressed: (){}, icon:Icon(Icons.search,size: 40,color: Colors.white,)),)
+                    ],
+                  ),
                 ),
+              ),
+              SizedBox(height:20,),
+              Container(
+                child: ListView.builder(
+                    itemCount: 6,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context,index){
+                  return Container(
+                       height: 45,
+                    width: 45,
+                    color: Colors.orangeAccent,
+                  );
+                }),
               )
             ],
           ),
