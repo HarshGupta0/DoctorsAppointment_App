@@ -1,8 +1,10 @@
 import 'package:doctors_appointment/constants/strings.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../constants/lottie_asstes.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
@@ -15,7 +17,7 @@ class HomeView extends StatelessWidget {
           title: Text("Welcome User",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
           centerTitle: true,
           backgroundColor:
-              Colors.lightBlue.shade200.withBrightness,
+          Colors.lightBlue.shade200.withBrightness,
           automaticallyImplyLeading: false,
         ),
         body: Container(
@@ -41,18 +43,36 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SizedBox(height:20,),
-              Container(
+              SizedBox(
+                height: 120,
                 child: ListView.builder(
-                    itemCount: 6,
+                    itemCount: lottie.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context,index){
-                  return Container(
-                       height: 45,
-                    width: 45,
-                    color: Colors.orangeAccent,
+                  return InkWell(
+                    onTap: (){},
+                    child: Container(
+                      height: 120,
+                      width: 75,
+                      decoration: BoxDecoration(
+                          color: Colors.lightBlue.shade200.withBrightness.withOpacity(.8),
+                          borderRadius: BorderRadius.circular(12)
+                      ),
+                      margin: EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: LottieBuilder.asset(
+                              lottie[index],
+                            ),
+                          ),
+                          Center(child: Text(lottieName[index],style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),)
+                        ],
+                      ),
+                    ),
                   );
                 }),
-              )
+              ),
             ],
           ),
         ),
