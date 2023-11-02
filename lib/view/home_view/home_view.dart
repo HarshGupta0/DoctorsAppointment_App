@@ -41,18 +41,18 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SizedBox(height:20,),
-              // Container(
-              //   child: ListView.builder(
-              //       itemCount: 6,
-              //       scrollDirection: Axis.horizontal,
-              //       itemBuilder: (BuildContext context,index){
-              //     return Container(
-              //          height: 45,
-              //       width: 45,
-              //       color: Colors.orangeAccent,
-              //     );
-              //   }),
-              // )
+              Container(
+                child: ListView.builder(
+                    itemCount: 6,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context,index){
+                  return Container(
+                       height: 45,
+                    width: 45,
+                    color: Colors.orangeAccent,
+                  );
+                }),
+              )
             ],
           ),
         ),
