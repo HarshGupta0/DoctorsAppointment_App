@@ -3,13 +3,13 @@ import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../constants/lottie_asstes.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController search = TextEditingController();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -33,7 +33,8 @@ class HomeView extends StatelessWidget {
                       Expanded(child:
                       CustomTextField(
                         hintText: AppStrings.searchHere,
-                        ispassword: false,
+                        isPassword: false,
+                        textEditingController: search,
                       ),),
                       Container(
                         margin: EdgeInsets.only(right: 20,bottom: 20),
@@ -46,6 +47,7 @@ class HomeView extends StatelessWidget {
               SizedBox(
                 height: 120,
                 child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
                     itemCount: lottie.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context,index){
@@ -73,6 +75,7 @@ class HomeView extends StatelessWidget {
                   );
                 }),
               ),
+
             ],
           ),
         ),

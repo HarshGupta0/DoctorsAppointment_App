@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   final String hintText;
-  final bool ispassword;
+  final bool isPassword;
   final TextEditingController? textEditingController;
   final Color textColor; // Changed to 'Color'
+  final String? Function(String?)? validator; // Add validator function
 
   CustomTextField({
     required this.hintText,
-    this.textEditingController,
+    required this.textEditingController,
     this.textColor = Colors.black54,
-    this.ispassword = false,
+    this.isPassword = false,
+    this.validator, // Initialize validator
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +32,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: TextFormField(
-          obscureText: widget.ispassword,
+          obscureText: widget.isPassword,
           controller: widget.textEditingController,
           decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -42,6 +44,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: widget.textColor, // Use the provided text color
             ),
           ),
+          validator: widget.validator, // Assign the validator function
         ),
       ),
     );
