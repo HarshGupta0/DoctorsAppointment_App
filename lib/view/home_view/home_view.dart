@@ -57,8 +57,8 @@ class HomeView extends StatelessWidget {
                       height: 120,
                       width: 75,
                       decoration: BoxDecoration(
-                          color: Colors.lightBlue.shade200.withBrightness.withOpacity(.8),
-                          borderRadius: BorderRadius.circular(12)
+                          color: Colors.lightBlue.shade200.withBrightness.withOpacity(.7),
+                          borderRadius: BorderRadius.circular(10)
                       ),
                       margin: EdgeInsets.all(10),
                       child: Column(
