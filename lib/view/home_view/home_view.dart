@@ -24,7 +24,11 @@ class HomeView extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                color: Colors.lightBlue.shade200.withBrightness,
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue.shade200.withBrightness,
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight:Radius.circular(20)),
+                ),
+                padding: EdgeInsets.only(bottom: 20,left: 5,right: 5),
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                   width: MediaQuery.of(context).size.width,

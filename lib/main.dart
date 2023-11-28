@@ -1,3 +1,4 @@
+import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:doctors_appointment/view/login_view/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(GetMaterialApp(home: LoginView(),));
+  runApp(GetMaterialApp(home: HomeView(),));
 }
 
