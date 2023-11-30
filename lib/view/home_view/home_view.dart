@@ -104,21 +104,21 @@ class HomeView extends StatelessWidget {
                     }),
               ),
               10.h.heightBox,
-              SizedBox(
-                height: 150.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    physics: BouncingScrollPhysics(),
-                    itemBuilder: (BuildContext context, index) {
-                      return Container(
-                        height: 200,
-                        width: 100,
-                        margin: EdgeInsets.all(10),
-                        color: Colors.red,
-                      );
-                    }),
-              )
+              // SizedBox(
+              //   height: 150.h,
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //       itemCount: 3,
+              //       physics: BouncingScrollPhysics(),
+              //       itemBuilder: (BuildContext context, index) {
+              //         return Container(
+              //           height: 200,
+              //           width: 100,
+              //           margin: EdgeInsets.all(10),
+              //           color: Colors.red,
+              //         );
+              //       }),
+              // )
             ],
           ),
         ),
