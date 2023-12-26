@@ -31,7 +31,7 @@ class _SignUpViewState extends State<SignUpView> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 2 * .7,
+                  height: MediaQuery.of(context).size.height / 2 * .8,
                   child: Container(
                     child: LottieBuilder.asset(
                       "assets/lottie/lottie2.json",
