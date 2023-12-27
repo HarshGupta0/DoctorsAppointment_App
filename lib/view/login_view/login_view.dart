@@ -5,6 +5,7 @@ import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -36,14 +37,6 @@ class _LoginViewState extends State<LoginView> {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
     }
   }
-
-  // Function to save user UID to shared preferences
-  // void _saveUserUid(String uid) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setString('uid', uid);
-  // }
-
-  // Function to get user UID from shared preferences
   Future<String?> _getUserUid() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('uid');
@@ -69,9 +62,10 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Container(
+                  margin: EdgeInsets.all(8.w),
                   child: SingleChildScrollView(
                     child: Form(
                       child: Column(
@@ -81,12 +75,12 @@ class _LoginViewState extends State<LoginView> {
                               "Login Here",
                               style: TextStyle(
                                   color: Colors.black45,
-                                  fontSize: 32,
+                                  fontSize: 32.sp,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           CustomTextField(
                             hintText: AppStrings.emailHint,
@@ -105,7 +99,7 @@ class _LoginViewState extends State<LoginView> {
                                 onPressed: () {},
                                 child: Text(
                                   "Forget Password?",
-                                  style: TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: 16.sp),
                                 ),
                               ),
                               TextButton(
@@ -114,13 +108,13 @@ class _LoginViewState extends State<LoginView> {
                                 },
                                 child: Text(
                                   "New User!!",
-                                  style: TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: 16.sp),
                                 ),
                               ),
                             ],
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.sp,
                           ),
                           CustomButton(
                             onTap: () {

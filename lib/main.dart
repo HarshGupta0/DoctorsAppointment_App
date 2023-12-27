@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder: (BuildContext context, Widget? child) {
+      builder: (
+          BuildContext context, Widget? child) {
         return MaterialApp(
           home:
           FirebaseAuth.instance.currentUser==null?LoginView():HomeView(),
