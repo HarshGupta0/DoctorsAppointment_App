@@ -1,7 +1,6 @@
 import 'package:doctors_appointment/constants/strings.dart';
 import 'package:doctors_appointment/firebaseFunctions/Firebase_functions.dart';
 import 'package:doctors_appointment/view/SignUp_view/SignUp_view.dart';
-import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key});
@@ -26,21 +24,21 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     super.initState();
     // Check for user persistence on app start
-    checkUserPersistence();
+    // checkUserPersistence();
   }
 
   // Function to check if the user is already logged in
-  void checkUserPersistence() async {
-    String? uid = await _getUserUid();
-    if (uid != null && uid.isNotEmpty) {
-      // User is already logged in, navigate to HomeView
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
-    }
-  }
-  Future<String?> _getUserUid() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('uid');
-  }
+  // void checkUserPersistence() async {
+  //   String? uid = await _getUserUid();
+  //   if (uid != null && uid.isNotEmpty) {
+  //     // User is already logged in, navigate to HomeView
+  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
+  //   }
+  // }
+  // Future<String?> _getUserUid() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   return prefs.getString('uid');
+  // }
 
   @override
   Widget build(BuildContext context) {
