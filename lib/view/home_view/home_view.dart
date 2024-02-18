@@ -104,7 +104,7 @@ class HomeView extends StatelessWidget {
                     }),
               ),
               SizedBox(
-                height: 200,
+                height: 220.h,
                 child: ListView.builder(
                     physics: BouncingScrollPhysics(),
                     itemCount: lottie.length,
@@ -198,8 +198,8 @@ class HomeView extends StatelessWidget {
   List<String> docDegree =[
     "MS/MD , M.CH",
     "MBBS , MS",
-    "PHD , MS/MCH"
-        "MBBS,MCH",
+    "PHD , MS/MCH",
+    "MBBS,MCH",
     "PHD , MBBS",
     "MS/MS",
   ];
