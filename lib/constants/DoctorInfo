@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+List<String> DocName =[
+"Dr.Harsh Gupta",
+"Dr.Navodita Gupta",
+"Dr.Tony Stark",
+"Dr.Bruce Banner",
+"Dr.Strange",
+"Dr.America"
+
+];
+List<String> DocSp =[
+  "Heart",
+  "Kidney",
+  "Liver",
+  "Lungs",
+  "Nose ",
+  "Eye",
+];
+List<String> DocDegree =[
+  "MS/MD , M.CH",
+  "MBBS , MS",
+  "PHD , MS/MCH"
+  "MBBS,MCH",
+  "PHD , MBBS",
+  "MS/MS",
+];
+List<String> DocExp =[
+  "10 years",
+  "13 years",
+  "11 years",
+  "15 years",
+  "12 years",
+  "10 years",
+];

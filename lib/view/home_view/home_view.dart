@@ -1,14 +1,14 @@
 import 'package:doctors_appointment/constants/strings.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../constants/lottie_asstes.dart';
-
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 15.h,
               ),
               SizedBox(
                 height: 120.h,
@@ -90,9 +90,9 @@ class HomeView extends StatelessWidget {
                                 ),
                               ),
                               Center(
-                                child: Text(
+                                child:Text(
                                   lottieName[index],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
                                 ),
@@ -103,26 +103,112 @@ class HomeView extends StatelessWidget {
                       );
                     }),
               ),
-              10.h.heightBox,
-              // SizedBox(
-              //   height: 150.h,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //       itemCount: 3,
-              //       physics: BouncingScrollPhysics(),
-              //       itemBuilder: (BuildContext context, index) {
-              //         return Container(
-              //           height: 200,
-              //           width: 100,
-              //           margin: EdgeInsets.all(10),
-              //           color: Colors.red,
-              //         );
-              //       }),
-              // )
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: lottie.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: Container(
+                          width:170.w,
+                          decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade200.withBrightness
+                                  .withOpacity(.7),
+                              borderRadius: BorderRadius.circular(10)),
+                          margin: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Flexible(
+                                child: LottieBuilder.asset(
+                                  lottie[index],
+                                ),
+                              ),
+                              DottedLine(
+                                dashLength: 2,
+                                dashGapLength: 2,
+                                lineThickness: 2,
+                                dashColor: Colors.black,
+                                // dashGapColor: Colors.red,
+                              ),
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    AboutDr(docName[index].toString(),docExp[index].toString()),
+                                    AboutDrInfo(docDegree[index].toString(),docSp[index].toString()),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+
             ],
           ),
         ),
       ),
     );
   }
+  Widget AboutDr( String name , String Exp){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text( "Name :- ${name}",style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)),
+        SizedBox(width: 5.w,),
+        Text( "Exp :- ${Exp}",style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)),
+      ],
+    ) ;
+
+  }
+  Widget AboutDrInfo( String Degree , String sp){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text( "Degree :- ${Degree}",style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)),
+        SizedBox(width: 5.w,),
+        Text( "Sp :- ${sp}",style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)),
+      ],
+    ) ;
+
+  }
+
+  List<String> docName =[
+    "Dr.Harsh Gupta",
+    "Dr.Navodita Gupta",
+    "Dr.Tony Stark",
+    "Dr.Bruce Banner",
+    "Dr.Strange",
+    "Dr.America"
+
+  ];
+  List<String> docSp =[
+    "Heart",
+    "Kidney",
+    "Liver",
+    "Lungs",
+    "Nose ",
+    "Eye",
+  ];
+  List<String> docDegree =[
+    "MS/MD , M.CH",
+    "MBBS , MS",
+    "PHD , MS/MCH"
+        "MBBS,MCH",
+    "PHD , MBBS",
+    "MS/MS",
+  ];
+  List<String> docExp =[
+    "10 years",
+    "13 years",
+    "11 years",
+    "15 years",
+    "12 years",
+    "10 years",
+  ];
 }
