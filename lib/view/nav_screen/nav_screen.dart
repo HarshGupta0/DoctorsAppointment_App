@@ -1,7 +1,7 @@
 import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:velocity_x/velocity_x.dart';
+import '../Categary_Screen/Categary_Screen.dart';
 class NavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class NavScreen extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
-      decoration: NavBarDecoration(
+      decoration:const NavBarDecoration(
         colorBehindNavBar: Colors.white,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(10),
@@ -40,7 +40,7 @@ class NavScreen extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       HomeView(),
-      Center(child: Text('Screen 2')),
+      CategoryScreen(),
       Center(child: Text('Screen 3')),
       Center(child: Text('Screen 4')),
 

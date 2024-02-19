@@ -69,6 +69,7 @@ class HomeView extends StatelessWidget {
               Container(
                 height: 120.sp,
                 child: ListView.builder(
+                    physics:const BouncingScrollPhysics(),
                     itemCount: lottie.length,
                     scrollDirection: Axis.horizontal,
                     shrinkWrap:false,
@@ -134,7 +135,7 @@ class HomeView extends StatelessWidget {
               Container(
                 height: 250.sp,
                 child: ListView.builder(
-
+                    physics:const BouncingScrollPhysics(),
                     itemCount: Doclottie.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, index) {

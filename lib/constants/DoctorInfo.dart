@@ -32,3 +32,11 @@ List<String> docExp =[
   "12 years",
   "10 years",
 ];
+List<String> Availbility =[
+  "SPECIALIST :10",
+  "SPECIALIST :13",
+  "SPECIALIST :11",
+  "SPECIALIST :15",
+  "SPECIALIST :12",
+  "SPECIALIST :21",
+];
