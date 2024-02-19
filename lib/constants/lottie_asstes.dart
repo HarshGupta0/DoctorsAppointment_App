@@ -16,11 +16,19 @@ List<String> lottieName =[
   "Eye",
 ];
 List<String> Doclottie =[
-  // 'assets/Doc_lottie/Animation - 1708335754752.json',
   'assets/Doc_lottie/Animation - 1708335879503.json',
-  'assets/Doc_lottie/Animation - 1708336042823.json',
+  "assets/Doc_lottie/Animation - 1708336077598.json",
+  'assets/Doc_lottie/Animation - 1708335879503.json',
+  "assets/Doc_lottie/Animation - 1708336077598.json",
+  'assets/Doc_lottie/Animation - 1708335879503.json',
+  "assets/Doc_lottie/Animation - 1708336077598.json",
+
+];
+List<String> testlottie=[
   'assets/Doc_lottie/Animation - 1708337998537.json',
   "assets/Doc_lottie/Animation - 1708336077598.json",
   "assets/Doc_lottie/Animation - 1708337935268.json",
-  "assets/Doc_lottie/Animation - 1708338083271.json",
+  "assets/Doc_lottie/Animation - 1708336077598.json",
+  'assets/Doc_lottie/Animation - 1708337998537.json',
+  "assets/Doc_lottie/Animation - 1708336077598.json",
 ];

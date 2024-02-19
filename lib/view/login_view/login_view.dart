@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
-          color: Colors.lightBlue.shade200.withBrightness,
+          color: Colors.lightBlue.shade200,
           child: SingleChildScrollView(
             child: Column(
               children: [
