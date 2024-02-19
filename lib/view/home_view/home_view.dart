@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../../constants/DoctorInfo.dart';
 import '../../constants/lottie_asstes.dart';
 
 class HomeView extends StatelessWidget {
@@ -135,7 +136,7 @@ class HomeView extends StatelessWidget {
                 height: 250.sp,
                 child: ListView.builder(
 
-                    itemCount: lottie.length,
+                    itemCount: Doclottie.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, index) {
                       return InkWell(
@@ -162,7 +163,7 @@ class HomeView extends StatelessWidget {
                             children: [
                               Flexible(
                                 child: LottieBuilder.asset(
-                                  lottie[index],
+                                  Doclottie[index],
                                 ),
                               ),
                               DottedLine(
@@ -256,36 +257,4 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  List<String> docName = [
-    "Dr.Harsh Gupta",
-    "Dr.Navodita Gupta",
-    "Dr.Tony Stark",
-    "Dr.Bruce Banner",
-    "Dr.Strange",
-    "Dr.America"
-  ];
-  List<String> docSp = [
-    "Heart",
-    "Kidney",
-    "Liver",
-    "Lungs",
-    "Nose ",
-    "Eye",
-  ];
-  List<String> docDegree = [
-    "MS/MD , M.CH",
-    "MBBS , MS",
-    "PHD , MS/MCH",
-    "MBBS,MCH",
-    "PHD , MBBS",
-    "MS/MS",
-  ];
-  List<String> docExp = [
-    "10 years",
-    "13 years",
-    "11 years",
-    "15 years",
-    "12 years",
-    "10 years",
-  ];
 }
