@@ -1,7 +1,10 @@
+import 'package:doctors_appointment/view/SignUp_view/SignUp_view.dart';
 import 'package:doctors_appointment/view/home_view/home_view.dart';
+import 'package:doctors_appointment/view/login_view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Categary_Screen/Categary_Screen.dart';
+import '../settings_view/Settings_view.dart';
 class NavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,8 +44,8 @@ class NavScreen extends StatelessWidget {
     return [
       HomeView(),
       CategoryScreen(),
-      Center(child: Text('Screen 3')),
-      Center(child: Text('Screen 4')),
+      SignUpView(),
+      SettingsView(),
 
     ];
   }
