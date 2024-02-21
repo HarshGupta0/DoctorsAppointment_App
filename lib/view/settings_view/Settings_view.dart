@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
@@ -10,11 +11,17 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
+  String _numberCtrl="8505063481";
+  @override
+  void initState() {
+    super.initState();
+    _numberCtrl = "8505063481";
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         title: Text("Profile",style: TextStyle(fontWeight: FontWeight.w500),),
         centerTitle: true,
@@ -50,16 +57,47 @@ class _SettingsViewState extends State<SettingsView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("User Name",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18),),
-                          Text("Harsh@123.gmail.com",style: TextStyle(fontWeight: FontWeight.w400),),
+                          Text("User Name",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18.sp),),
+                          const Text("Harsh@123.gmail.com",style: TextStyle(fontWeight: FontWeight.w400),),
                         ],
                       ),
                     ],
                   ),
                 ),
+                CardWidget("Address", Icons.location_on, () { }),
+                CardWidget("Privacy and Policy", Icons.privacy_tip_outlined, () { }),
+                CardWidget("Help Line",Icons.phone, () async {
+                  FlutterPhoneDirectCaller.callNumber(_numberCtrl);
+                  print("prssed");
+                },),
+                CardWidget("Contact Us", Icons.mail_outline_sharp, () { }),
+                CardWidget("Logout", Icons.logout, () {
+                }),
+
               ],
             ),
           ),
     ));
   }
+ Widget CardWidget(String input , IconData icon , VoidCallback onTap ){
+    return Container(
+      width : double.infinity,
+      padding: EdgeInsets.all(15.sp),
+      margin: EdgeInsets.symmetric(horizontal: 15.sp,vertical: 5),
+      decoration: BoxDecoration(
+        color:Colors.lightBlue.shade200,
+        borderRadius: BorderRadius.circular(20.r),
+      ),
+    child:InkWell(
+      onTap: onTap,
+       child: Row(
+          children: [
+            Icon(icon,size: 30,),
+            SizedBox(width: 40.w,),
+            Text(input,style: TextStyle(fontSize: 18,fontWeight:FontWeight.w500),)
+          ],
+        )
+    ),
+    );
+ }
 }

@@ -1,6 +1,5 @@
 import 'package:doctors_appointment/view/SignUp_view/SignUp_view.dart';
 import 'package:doctors_appointment/view/home_view/home_view.dart';
-import 'package:doctors_appointment/view/login_view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Categary_Screen/Categary_Screen.dart';

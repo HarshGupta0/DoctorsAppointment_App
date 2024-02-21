@@ -22,7 +22,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             elevation: 0,
             backgroundColor:Colors.lightBlue.shade200,
           ),
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Colors.blue.shade50,
           body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

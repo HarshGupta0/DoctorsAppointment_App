@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
           backgroundColor: Colors.lightBlue.shade200,
           automaticallyImplyLeading: false,
         ),
+          backgroundColor: Colors.blue.shade50,
         body: SingleChildScrollView(
           child: Column(
             children: [
