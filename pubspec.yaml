@@ -46,6 +46,7 @@ dependencies:
   dotted_line: ^3.2.2
   persistent_bottom_nav_bar: ^5.0.2
   flutter_phone_direct_caller: ^2.1.1
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:

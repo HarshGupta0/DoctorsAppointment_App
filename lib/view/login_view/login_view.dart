@@ -8,8 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import '../home_view/home_view.dart';
 
 class LoginView extends StatefulWidget {
@@ -105,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Get.to(() => SignUpView());
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpView()));
                                 },
                                 child: Text(
                                   "New User!!",

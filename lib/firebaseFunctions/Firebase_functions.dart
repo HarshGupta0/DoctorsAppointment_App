@@ -1,5 +1,6 @@
 import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:doctors_appointment/view/login_view/login_view.dart';
+import 'package:doctors_appointment/view/nav_screen/nav_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,12 +10,6 @@ void _saveUserUid(String uid) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('uid', uid);
 }
-
-// Function to get user UID from shared preferences
-// Future<String?> _getUserUid() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   return prefs.getString('uid');
-// }
 
 // SignUp Function
 createUserWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
@@ -26,7 +21,7 @@ createUserWithEmailAndPassword(String emailAddress, String password, BuildContex
     User? user = credential.user;
     if (user != null) {
       _saveUserUid(user.uid);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavScreen()));
       MySnackbar(context, "User Registered", Colors.green);
     } else {
       // Handle other cases here if needed

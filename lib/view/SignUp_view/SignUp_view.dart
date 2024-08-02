@@ -4,8 +4,6 @@ import 'package:doctors_appointment/firebaseFunctions/Firebase_functions.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:lottie/lottie.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
@@ -16,6 +14,7 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController nameController = TextEditingController(); // Changed variable name
 
   final _formKey = GlobalKey<FormState>(); // Added form key
@@ -95,11 +94,11 @@ class _SignUpViewState extends State<SignUpView> {
                             },
                           ),
                           CustomTextField(
-                            textEditingController: passwordController,
+                            textEditingController: confirmPasswordController,
                             hintText: AppStrings.confirmPassword,
                             isPassword: true,
                             validator: (value) {
-                              if (value!= passwordController.text) {
+                              if (value!= confirmPasswordController.text) {
                                 return 'Passwords do not match';
                               }
                               return null;
