@@ -1,11 +1,10 @@
-import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:doctors_appointment/view/login_view/login_view.dart';
 import 'package:doctors_appointment/view/nav_screen/nav_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Function to save user UID to shared preferences
 void _saveUserUid(String uid) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('uid', uid);
@@ -42,12 +41,15 @@ createUserWithEmailAndPassword(String emailAddress, String password, BuildContex
 }
 
 // SnackBar
-MySnackbar(BuildContext context, String Message, Color colors) {
-  return ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: colors,
-      content: Text(Message),
-    ),
+MySnackbar( BuildContext Context,String message, Color color) {
+  Get.snackbar(
+    "Notification", // Title of the snackbar
+    message, // Message to be shown
+    snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: color,
+    colorText: Colors.white,
+    borderRadius: 10,
+    margin: EdgeInsets.all(10),
   );
 }
 
@@ -61,7 +63,7 @@ signInWithEmailAndPassword(String emailAddress, String password, BuildContext co
     User? user = credential.user;
     if (user != null) {
       _saveUserUid(user.uid);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>NavScreen()));
       MySnackbar(context, "Login Successfully", Colors.green);
     } else {
       // Handle other cases here if needed
@@ -82,6 +84,5 @@ signInWithEmailAndPassword(String emailAddress, String password, BuildContext co
 // Signout Function
 Signout(BuildContext context) async {
   await FirebaseAuth.instance.signOut();
-  _saveUserUid(''); // Clear the user UID from shared preferences
   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginView()));
 }

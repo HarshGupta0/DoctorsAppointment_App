@@ -5,7 +5,6 @@ import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../home_view/home_view.dart';

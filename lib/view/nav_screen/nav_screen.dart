@@ -19,11 +19,11 @@ class NavScreen extends StatelessWidget {
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
       decoration:const NavBarDecoration(
-        colorBehindNavBar: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(10),
-          topLeft: Radius.circular(10)
-        )
+          colorBehindNavBar: Colors.white,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              topLeft: Radius.circular(10)
+          )
       ),
       popAllScreensOnTapOfSelectedTab: true,
       itemAnimationProperties: ItemAnimationProperties(
@@ -54,27 +54,27 @@ class NavScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: 'Home',
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.category_outlined),
         title: 'Category',
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person_outline),
         title: 'Doctor',
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
-      icon: Icon(Icons.settings_outlined),
-    title: 'Profile',
-    activeColorPrimary: Colors.blue,
-    inactiveColorPrimary: Colors.white,
-    ),
+        icon: Icon(Icons.settings_outlined),
+        title: 'Profile',
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: Colors.white,
+      ),
     ];
   }
 }

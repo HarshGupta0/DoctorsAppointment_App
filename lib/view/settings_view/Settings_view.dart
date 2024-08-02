@@ -1,9 +1,9 @@
+import 'package:doctors_appointment/firebaseFunctions/Firebase_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
 
@@ -80,14 +80,55 @@ class _SettingsViewState extends State<SettingsView> {
               CardWidget("Contact Us", Icons.mail_outline_sharp, () {
                 composeEmail("iharshgupta.2003@gmail.com", "Subject", "Body");
               }),
-              CardWidget("Logout", Icons.logout, () {}),
+              CardWidget("Logout", Icons.logout,(){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Logout"),
+                      content: Text("Are you sure you want to logout?"),
+                      actions: [
+                        TextButton(
+                          child: Text("No"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: Text("Yes"),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return const AlertDialog(
+                                  content: Row(
+                                    children: [
+                                      CircularProgressIndicator(),
+                                      SizedBox(width: 20),
+                                      Text("Signing out..."),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                            Future.delayed(Duration(seconds: 2),(){
+                              Signout(context);
+                            });
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
+              ),
             ],
           ),
         ),
       ),
     );
   }
-
   Widget CardWidget(String input, IconData icon, VoidCallback onTap) {
     return Container(
       width: double.infinity,

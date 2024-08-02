@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 import 'package:doctors_appointment/constants/strings.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:dotted_line/dotted_line.dart';
