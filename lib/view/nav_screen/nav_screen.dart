@@ -43,7 +43,7 @@ class NavScreen extends StatelessWidget {
     return [
       HomeView(),
       CategoryScreen(),
-      SignUpView(),
+      CategoryScreen(),
       SettingsView(),
 
     ];

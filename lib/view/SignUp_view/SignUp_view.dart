@@ -1,8 +1,9 @@
+import 'package:doctors_appointment/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctors_appointment/constants/strings.dart';
-import 'package:doctors_appointment/firebaseFunctions/Firebase_functions.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:doctors_appointment/widgets/customButton.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -12,10 +13,11 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  var controller = Get.put(AuthController());
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController nameController = TextEditingController(); // Changed variable name
+  // TextEditingController nameController = TextEditingController(); // Changed variable name
 
   final _formKey = GlobalKey<FormState>(); // Added form key
 
@@ -57,7 +59,7 @@ class _SignUpViewState extends State<SignUpView> {
                           CustomTextField(
                             hintText: AppStrings.fullnameHint,
                             isPassword: false,
-                            textEditingController: nameController,
+                            textEditingController:controller.fullnameController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your name';
@@ -68,7 +70,7 @@ class _SignUpViewState extends State<SignUpView> {
                           CustomTextField(
                             hintText: AppStrings.emailHint,
                             isPassword: false,
-                            textEditingController: emailController,
+                            textEditingController: controller.emailController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter an email';
@@ -82,7 +84,7 @@ class _SignUpViewState extends State<SignUpView> {
                           CustomTextField(
                             hintText: AppStrings.passwordHint,
                             isPassword: true,
-                            textEditingController: passwordController,
+                            textEditingController:controller.passwordController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter a password';
@@ -107,11 +109,7 @@ class _SignUpViewState extends State<SignUpView> {
                           CustomButton(
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                createUserWithEmailAndPassword(
-                                  emailController.text,
-                                  passwordController.text,
-                                  context,
-                                );
+                                controller.createUserWithEmailAndPassword(context);
                               }
                             },
                             ButtonText: AppStrings.signup,

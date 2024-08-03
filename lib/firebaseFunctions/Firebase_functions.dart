@@ -16,34 +16,34 @@ MySnackbar( BuildContext Context,String message, String heading ,Color bgcolor ,
   );
 }
 // SignUp Function
-createUserWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
-  try {
-    final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: emailAddress,
-      password: password,
-    );
-    User? user = credential.user;
-    if (user != null) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavScreen()));
-      MySnackbar(context, "User Registered"," Welcome", Colors.green,Colors.white);
-
-    } else {
-      // Handle other cases here if needed
-    }
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      MySnackbar(context, "Enter a strong Password","Weak password", Colors.orange.shade500,Colors.white);
-      print('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      MySnackbar(context, "The account already exists for that email.", "Account already exists",Colors.brown.shade400,Colors.white);
-      print('The account already exists for that email.');
-    } else {
-      print(e);
-    }
-  } catch (e) {
-    print(e);
-  }
-}
+// createUserWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
+//   try {
+//     final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+//       email: emailAddress,
+//       password: password,
+//     );
+//     User? user = credential.user;
+//     if (user != null) {
+//       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavScreen()));
+//       MySnackbar(context, "User Registered"," Welcome", Colors.green,Colors.white);
+//
+//     } else {
+//       // Handle other cases here if needed
+//     }
+//   } on FirebaseAuthException catch (e) {
+//     if (e.code == 'weak-password') {
+//       MySnackbar(context, "Enter a strong Password","Weak password", Colors.orange.shade500,Colors.white);
+//       print('The password provided is too weak.');
+//     } else if (e.code == 'email-already-in-use') {
+//       MySnackbar(context, "The account already exists for that email.", "Account already exists",Colors.brown.shade400,Colors.white);
+//       print('The account already exists for that email.');
+//     } else {
+//       print(e);
+//     }
+//   } catch (e) {
+//     print(e);
+//   }
+// }
 
 // Sign-In Function
 Future<void> signInWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {

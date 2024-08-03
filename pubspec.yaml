@@ -48,6 +48,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   url_launcher: ^6.2.4
   google_fonts: ^6.2.0
+  cloud_firestore: ^4.15.8
 
 dev_dependencies:
   flutter_test:
