@@ -1,9 +1,11 @@
 import 'package:doctors_appointment/constants/strings.dart';
+import 'package:doctors_appointment/firebaseFunctions/Firebase_functions.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../../constants/DoctorInfo.dart';
 import '../../constants/lottie_asstes.dart';
 

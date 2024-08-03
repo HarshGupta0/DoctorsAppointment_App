@@ -3,13 +3,18 @@ import 'package:doctors_appointment/view/nav_screen/nav_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-void _saveUserUid(String uid) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('uid', uid);
+// SnackBar
+MySnackbar( BuildContext Context,String message, String heading ,Color bgcolor ,Color textcolor) {
+  Get.snackbar(
+    heading, // Title of the snackbar
+    message, // Message to be shown
+    // snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: bgcolor,
+    colorText:textcolor,
+    borderRadius: 10,
+    margin: EdgeInsets.all(10),
+  );
 }
-
 // SignUp Function
 createUserWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
   try {
@@ -19,18 +24,18 @@ createUserWithEmailAndPassword(String emailAddress, String password, BuildContex
     );
     User? user = credential.user;
     if (user != null) {
-      _saveUserUid(user.uid);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavScreen()));
-      MySnackbar(context, "User Registered", Colors.green);
+      MySnackbar(context, "User Registered"," Welcome", Colors.green,Colors.white);
+
     } else {
       // Handle other cases here if needed
     }
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      MySnackbar(context, "Weak password", Colors.orange.shade500);
+      MySnackbar(context, "Enter a strong Password","Weak password", Colors.orange.shade500,Colors.white);
       print('The password provided is too weak.');
     } else if (e.code == 'email-already-in-use') {
-      MySnackbar(context, "The account already exists for that email.", Colors.brown.shade400);
+      MySnackbar(context, "The account already exists for that email.", "Account already exists",Colors.brown.shade400,Colors.white);
       print('The account already exists for that email.');
     } else {
       print(e);
@@ -40,21 +45,19 @@ createUserWithEmailAndPassword(String emailAddress, String password, BuildContex
   }
 }
 
-// SnackBar
-MySnackbar( BuildContext Context,String message, Color color) {
-  Get.snackbar(
-    "Notification", // Title of the snackbar
-    message, // Message to be shown
-    snackPosition: SnackPosition.BOTTOM,
-    backgroundColor: color,
-    colorText: Colors.white,
-    borderRadius: 10,
-    margin: EdgeInsets.all(10),
-  );
-}
-
 // Sign-In Function
-signInWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
+Future<void> signInWithEmailAndPassword(String emailAddress, String password, BuildContext context) async {
+  // Show loading indicator
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+  );
+
   try {
     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailAddress,
@@ -62,24 +65,28 @@ signInWithEmailAndPassword(String emailAddress, String password, BuildContext co
     );
     User? user = credential.user;
     if (user != null) {
-      _saveUserUid(user.uid);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>NavScreen()));
-      MySnackbar(context, "Login Successfully", Colors.green);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavScreen()));
+      MySnackbar(context, "Login Successfully", "Success", Colors.black12.withOpacity(.6),Colors.white);
     } else {
       // Handle other cases here if needed
     }
   } on FirebaseAuthException catch (e) {
+    Navigator.pop(context); // Hide loading indicator
     if (e.code == 'user-not-found') {
-      MySnackbar(context, "No user found for that email.", Colors.red);
-      print('No user found for that email.');
+      MySnackbar(context, "No user found for that email.", "Error", Colors.red.shade200.withOpacity(.6), Colors.white);
     } else if (e.code == 'wrong-password') {
-      MySnackbar(context, "Wrong password provided for that user", Colors.red);
-      print('Wrong password provided for that user.');
+      MySnackbar(context, "Wrong password provided for that user.", "Error", Colors.red.shade200.withOpacity(.6), Colors.white);
+
     } else {
-      print('Error code: ${e.code}');
+      MySnackbar(context, "Error code: ${e.code}", "Error", Colors.red.shade200.withOpacity(.6), Colors.white);
     }
+  } catch (e) {
+    Navigator.pop(context);
+    MySnackbar(context,"An error occurred: $e", "Error", Colors.red.shade200.withOpacity(.6), Colors.white);
+// Hide loading indicator
   }
 }
+
 
 // Signout Function
 Signout(BuildContext context) async {

@@ -6,9 +6,6 @@ import 'package:doctors_appointment/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../home_view/home_view.dart';
-
 class LoginView extends StatefulWidget {
   const LoginView({Key? key});
 
@@ -26,20 +23,6 @@ class _LoginViewState extends State<LoginView> {
     // Check for user persistence on app start
     // checkUserPersistence();
   }
-
-  // Function to check if the user is already logged in
-  void checkUserPersistence() async {
-    String? uid = await _getUserUid();
-    if (uid != null && uid.isNotEmpty) {
-      // User is already logged in, navigate to HomeView
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeView()));
-    }
-  }
-  Future<String?> _getUserUid() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('uid');
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
