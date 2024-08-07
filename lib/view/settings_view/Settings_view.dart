@@ -6,8 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
 
@@ -92,7 +90,6 @@ class _SettingsViewState extends State<SettingsView> {
                           Icons.privacy_tip_outlined, () {}),
                       CardWidget("Help Line", Icons.phone, () async {
                         await FlutterPhoneDirectCaller.callNumber(_numberCtrl);
-                        print("pressed");
                       }),
                       CardWidget("Contact Us", Icons.mail_outline_sharp, () {
                         composeEmail(
