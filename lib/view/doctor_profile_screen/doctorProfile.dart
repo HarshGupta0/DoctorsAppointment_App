@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:velocity_x/velocity_x.dart';
+import '../bookAppointment/bookAppointment.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
   final DocumentSnapshot doc;
@@ -14,10 +18,11 @@ class DoctorProfileScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(doc['DocName']),
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
         ),
         backgroundColor: Colors.lightBlue.shade200,
       ),
@@ -47,7 +52,7 @@ class DoctorProfileScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             Container(
+                            Container(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
                                 doc['DocName'],
@@ -65,19 +70,13 @@ class DoctorProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const Row(
-                              children: [
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                Icon(Icons.star_border,
-                                    color: Colors.orange, size: 16),
-                              ],
+                            VxRating(
+                              selectionColor: Colors.orange,
+                              onRatingUpdate: (value) {},
+                              maxRating: 5,
+                              count: 5,
+                              stepInt: true,
+                              value: double.parse(doc["DocRating"].toString()),
                             ),
                           ],
                         ),
@@ -120,10 +119,11 @@ class DoctorProfileScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           IconButton(
-                            onPressed: ()async{
-                              await FlutterPhoneDirectCaller.callNumber(doc['DocPhone']);
+                            onPressed: () async {
+                              await FlutterPhoneDirectCaller.callNumber(
+                                  doc['DocPhone']);
                             },
-                            icon:const Icon(Icons.phone),
+                            icon: const Icon(Icons.phone),
                             color: Colors.orange,
                           ),
                         ],
@@ -171,7 +171,7 @@ class DoctorProfileScreen extends StatelessWidget {
                       SizedBox(height: 8),
                       Text(doc['DocAddress']),
                       SizedBox(height: 16),
-                     const Text(
+                      const Text(
                         'Working Time',
                         style: TextStyle(
                           fontSize: 16,
@@ -201,7 +201,9 @@ class DoctorProfileScreen extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(BookAppointmentScreen(docId:doc['DocId'] ,docName: doc['DocName'],));
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.lightBlue.shade200,
             padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -209,7 +211,7 @@ class DoctorProfileScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          child:const Text(
+          child: const Text(
             'Book an appointment',
             style: TextStyle(
                 color: CupertinoColors.white, fontWeight: FontWeight.w600),
