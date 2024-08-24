@@ -3,6 +3,7 @@ import 'package:doctors_appointment/view/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Categary_Screen/Categary_Screen.dart';
+import '../appointmentView/appointmentView.dart';
 import '../settings_view/Settings_view.dart';
 class NavScreen extends StatelessWidget {
   @override
@@ -44,6 +45,7 @@ class NavScreen extends StatelessWidget {
       HomeView(),
       CategoryScreen(),
       CategoryScreen(),
+      AppointmentsScreen(),
       SettingsView(),
 
     ];
@@ -66,6 +68,12 @@ class NavScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person_outline),
         title: 'Doctor',
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: Colors.white,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.book_outlined),
+        title: 'Appointment',
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
       ),

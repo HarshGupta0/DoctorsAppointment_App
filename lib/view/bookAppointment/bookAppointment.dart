@@ -1,11 +1,16 @@
 import 'package:doctors_appointment/controllers/appointmentController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
   final String docId;
   final String docName;
-  const BookAppointmentScreen({Key? key, required this.docId, required this.docName}) : super(key: key);
+
+  const BookAppointmentScreen(
+      {Key? key, required this.docId, required this.docName})
+      : super(key: key);
+
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
 }
@@ -13,9 +18,10 @@ class BookAppointmentScreen extends StatefulWidget {
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   String? selectedDay;
   String? selectedTime;
+
   @override
   Widget build(BuildContext context) {
-    var contoller = Get.put(AppointmentController());
+    var controller = Get.put(AppointmentController());
     return Scaffold(
       backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
@@ -33,7 +39,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Card(
-            elevation: 4,
+            elevation: 3,
             color: Colors.blue.shade200,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -53,12 +59,13 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                       'Wednesday',
                       'Thursday',
                       'Friday',
-                      "Saturday",
-                      "Sunday"
+                      'Saturday',
+                      'Sunday',
                     ],
                     onChanged: (value) {
                       setState(() {
-                        selectedDay = value;
+                        selectedDay=value;
+                        controller.appointmentDayController.text = value.toString();
                       });
                     },
                   ),
@@ -70,34 +77,35 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     items: [
                       '9:00 AM-10:00 AM',
                       '11:00 AM-12:00 PM',
-                      '1:00 PM -2:00 PM',
-                      '3:00 PM 4:00 PM',
-                      '6:00 PM -7:00 PM',
-                      '8:00 PM -10:00 PM'
+                      '1:00 PM-2:00 PM',
+                      '3:00 PM-4:00 PM',
+                      '6:00 PM-7:00 PM',
+                      '8:00 PM-10:00 PM',
                     ],
                     onChanged: (value) {
                       setState(() {
-                        selectedTime = value;
+                        selectedTime=value;
+                        controller.appointmentTimeController.text=value.toString();
                       });
                     },
                   ),
                   SizedBox(height: 22),
                   _buildTextField(
-                    Textcontoller: contoller.appointmentNumberController,
+                    Textcontoller: controller.appointmentNumberController,
                     label: 'Mobile Number:',
                     hint: 'Enter your mobile number',
                     icon: Icons.phone,
                   ),
                   SizedBox(height: 22),
                   _buildTextField(
-                    Textcontoller: contoller.appointmentNameController,
+                    Textcontoller: controller.appointmentNameController,
                     label: 'Full Name:',
                     hint: 'Enter your name',
                     icon: Icons.person,
                   ),
                   SizedBox(height: 22),
                   _buildTextField(
-                    Textcontoller: contoller.appointmentMessageController,
+                    Textcontoller: controller.appointmentMessageController,
                     label: 'Message:',
                     hint: 'Enter your message',
                     maxLines: 5,
@@ -108,26 +116,45 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: () {
-            // Handle book appointment action
-            contoller.bookAppointment(widget.docId, context);
-          },
-          child: Text(
-            'Book an appointment',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.lightBlue.shade200,
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+      bottomNavigationBar: Obx(() => Padding(
+            padding: const EdgeInsets.all(16.0),
+            child:controller.isLoading.value ?Center(child: CircularProgressIndicator(),): ElevatedButton(
+              onPressed: () {
+                // Ensure selectedDay and selectedTime are not null before proceeding
+                if (selectedDay != null &&
+                    selectedTime != null &&
+                    controller.appointmentNumberController.text != null &&
+                    controller.appointmentNameController.text != null) {
+                  // Pass the selected day and time along with other details to the controller
+                  controller.bookAppointment(
+                    widget.docId,
+                    context,
+                    // selectedDay!,
+                    // selectedTime!,
+                  );
+                  print(controller.appointmentMessageController);
+                } else {
+                  // Handle the case where day or time is not selected
+                  Get.snackbar(
+                    'Missing Information',
+                    'Please Enter all The  Feilds.',
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              },
+              child:Text(
+                'Book an appointment',
+                style:TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightBlue.shade200,
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 
@@ -137,7 +164,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     String? value,
     required List<String> items,
     required ValueChanged<String?> onChanged,
-    TextEditingController? controller,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +197,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       ],
     );
   }
-  
 
   Widget _buildTextField({
     required String label,
@@ -204,13 +229,13 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           ),
           child: TextField(
             maxLines: maxLines,
-            controller:Textcontoller ,
+            controller: Textcontoller,
             decoration: InputDecoration(
               hintText: hint,
               prefixIcon: icon != null ? Icon(icon) : null,
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(
-                  horizontal: 16.0, vertical: 8.0),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             ),
           ),
         ),

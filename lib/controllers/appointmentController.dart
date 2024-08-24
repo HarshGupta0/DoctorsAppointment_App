@@ -26,7 +26,11 @@ class AppointmentController extends GetxController {
       'appointmentWith':docId,
     });
     isLoading(false);
-    VxToast.show(context, msg:"Appointemt is booked");
+    VxToast.show(context, msg:"Appointment is booked");
     Get.back();
+  }
+
+   Future<QuerySnapshot<Map<String,dynamic>>> getAppointments(){
+    return FirebaseFirestore.instance.collection("Appointments").get();
   }
 }
