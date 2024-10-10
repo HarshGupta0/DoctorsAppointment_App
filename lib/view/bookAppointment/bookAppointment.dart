@@ -2,12 +2,12 @@ import 'package:doctors_appointment/constants/DoctorInfo.dart';
 import 'package:doctors_appointment/controllers/appointmentController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class BookAppointmentScreen extends StatefulWidget {
   final String docId;
   final String docName;
-  const BookAppointmentScreen(
-      {Key? key, required this.docId, required this.docName})
-      : super(key: key);
+
+  const BookAppointmentScreen({Key? key, required this.docId, required this.docName}) : super(key: key);
 
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
@@ -51,18 +51,10 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     label: 'Select appointment day',
                     hint: 'Select day',
                     value: selectedDay,
-                    items: [
-                      'Monday',
-                      'Tuesday',
-                      'Wednesday',
-                      'Thursday',
-                      'Friday',
-                      'Saturday',
-                      'Sunday',
-                    ],
+                    items: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     onChanged: (value) {
                       setState(() {
-                        selectedDay=value;
+                        selectedDay = value;
                         controller.appointmentDayController.text = value.toString();
                       });
                     },
@@ -82,8 +74,8 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     ],
                     onChanged: (value) {
                       setState(() {
-                        selectedTime=value;
-                        controller.appointmentTimeController.text=value.toString();
+                        selectedTime = value;
+                        controller.appointmentTimeController.text = value.toString();
                       });
                     },
                   ),
@@ -115,45 +107,45 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         ),
       ),
       bottomNavigationBar: Obx(() => Padding(
-            padding: const EdgeInsets.all(16.0),
-            child:controller.isLoading.value ?Center(child: CircularProgressIndicator(),): ElevatedButton(
-              onPressed: () {
-                // Ensure selectedDay and selectedTime are not null before proceeding
-                if (selectedDay != null &&
-                    selectedTime != null &&
-                    controller.appointmentNumberController.text != null &&
-                    controller.appointmentNameController.text != null) {
-                  // Pass the selected day and time along with other details to the controller
-                  controller.bookAppointment(
-                    widget.docId,
-                    widget.docName,
-                    context,
-                    // selectedDay!,
-                    // selectedTime!,
-                  );
-                  print(controller.appointmentMessageController);
-                } else {
-                  // Handle the case where day or time is not selected
-                  Get.snackbar(
-                    'Missing Information',
-                    'Please Enter all The  Feilds.',
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-                }
-              },
-              child:Text(
-                'Book an appointment',
-                style:TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightBlue.shade200,
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
+        padding: const EdgeInsets.all(16.0),
+        child: controller.isLoading.value
+            ? Center(child: CircularProgressIndicator())
+            : ElevatedButton(
+          onPressed: () {
+            // Ensure selectedDay and selectedTime are not null before proceeding
+            if (selectedDay != null &&
+                selectedTime != null &&
+                controller.appointmentNumberController.text.isNotEmpty &&
+                controller.appointmentNameController.text.isNotEmpty) {
+              // Pass the selected day and time along with other details to the controller
+              controller.bookAppointment(
+                widget.docId,
+                widget.docName,
+                context,
+              );
+              print(controller.appointmentMessageController);
+            } else {
+              // Handle the case where day or time is not selected
+              Get.snackbar(
+                'Missing Information',
+                'Please Enter all The Fields.',
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            }
+          },
+          child: Text(
+            'Book an appointment',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.lightBlue.shade200,
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
             ),
-          )),
+          ),
+        ),
+      )),
     );
   }
 
@@ -233,8 +225,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               hintText: hint,
               prefixIcon: icon != null ? Icon(icon) : null,
               border: InputBorder.none,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             ),
           ),
         ),

@@ -1,48 +1,77 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AppointmentController extends GetxController {
   var isLoading = false.obs;
-  var appointmentDayController = TextEditingController();
-  var appointmentTimeController = TextEditingController();
-  var appointmentNumberController = TextEditingController();
-  var appointmentNameController = TextEditingController();
-  var appointmentMessageController = TextEditingController();
+  final appointmentDayController = TextEditingController();
+  final appointmentTimeController = TextEditingController();
+  final appointmentNumberController = TextEditingController();
+  final appointmentNameController = TextEditingController();
+  final appointmentMessageController = TextEditingController();
 
-  // Book an appointment
+  // Observable to hold the list of appointments
+  var appointments = <DocumentSnapshot>[].obs;
+
+  // Function to book an appointment
   Future<void> bookAppointment(String docId, String docName, context) async {
-    isLoading(true);
     try {
-      var store = await FirebaseFirestore.instance.collection("Appointments").doc();
-      await store.set({
-        'appointmentBy': FirebaseAuth.instance.currentUser?.uid,
-        'appointmentDay': appointmentDayController.text,
-        'appointmentTime': appointmentTimeController.text,
-        'appointmentName': appointmentNameController.text,
-        'appointmentNumber': appointmentNumberController.text,
-        'appointmentMessage': appointmentMessageController.text,
-        'appointmentWith': docId,
-        'appointmentWithDocName': docName,
-      });
-      VxToast.show(context, msg: "Appointment is booked");
+      isLoading(true);
+      final userId = FirebaseAuth.instance.currentUser?.uid; // Get current user ID
+      if (userId != null) {
+        await FirebaseFirestore.instance.collection('appointments').add({
+          'appointmentWithDocName': docName,
+          'appointmentDay': appointmentDayController.text,
+          'appointmentTime': appointmentTimeController.text,
+          'appointmentNumber': appointmentNumberController.text,
+          'appointmentName': appointmentNameController.text,
+          'appointmentMessage': appointmentMessageController.text,
+          'userId': userId, // Store the user's ID with the appointment
+        });
+        Get.snackbar('Success', 'Appointment booked successfully');
+        clearFields();
+        // Optionally refresh appointments after booking
+        await refreshAppointments();
+      }
     } catch (e) {
-      VxToast.show(context, msg: "Error: $e");
+      Get.snackbar('Error', 'Could not book appointment');
     } finally {
       isLoading(false);
-      Get.back();
     }
   }
 
-  // Get appointments
-  Future<QuerySnapshot<Map<String, dynamic>>> getAppointments() {
-    return FirebaseFirestore.instance.collection("Appointments").get();
+  // Fetch appointments for the logged-in user
+  Future<void> getAppointments() async {
+    final userId = FirebaseAuth.instance.currentUser?.uid; // Get the current user's ID
+    if (userId != null) {
+      try {
+        isLoading(true);
+        QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection('appointments')
+            .where('userId', isEqualTo: userId) // Filter by user ID
+            .get();
+        appointments.assignAll(querySnapshot.docs); // Update the appointments list
+      } catch (e) {
+        Get.snackbar('Error', 'Could not retrieve appointments');
+      } finally {
+        isLoading(false);
+      }
+    } else {
+      throw Exception('User not logged in');
+    }
   }
 
-  // Refresh appointments
+  // Refresh appointments (if needed)
   Future<void> refreshAppointments() async {
-    await getAppointments();
+    await getAppointments(); // Call getAppointments to refresh the list
+  }
+
+  void clearFields() {
+    appointmentDayController.clear();
+    appointmentTimeController.clear();
+    appointmentNumberController.clear();
+    appointmentNameController.clear();
+    appointmentMessageController.clear();
   }
 }

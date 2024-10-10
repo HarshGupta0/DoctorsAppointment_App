@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController search = TextEditingController();
     var controller = Get.put(HomeController());
-    var Scontroller = Get.put(SettinsController());
+    var Scontroller = Get.put(SettingsController());
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
