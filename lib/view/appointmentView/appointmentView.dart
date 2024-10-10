@@ -1,105 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctors_appointment/controllers/appointmentController.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../controllers/appointmentController.dart';
-class AppointmentsScreen extends StatelessWidget {
-  var controller = Get.put(AppointmentController());
-  final List<Appointment> appointments = [
-    Appointment(
-      doctorName: "Dr. John Doe",
-      appointmentTime: "10:00 AM",
-      avatarUrl: "https://example.com/avatar1.png",
-    ),
-    Appointment(
-      doctorName: "Dr. Jane Smith",
-      appointmentTime: "11:30 AM",
-      avatarUrl: "https://example.com/avatar2.png",
-    ),
-    Appointment(
-      doctorName: "Dr. Emily White",
-      appointmentTime: "2:00 PM",
-      avatarUrl: "https://example.com/avatar3.png",
-    ),
-    Appointment(
-      doctorName: "Dr. Michael Brown",
-      appointmentTime: "3:45 PM",
-      avatarUrl: "https://example.com/avatar4.png",
-    ),
-  ];
+import 'package:get/get_core/src/get_main.dart';
+class AppointmentView extends StatelessWidget {
+  const AppointmentView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AppointmentController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade200,
-        centerTitle: true,
         title: Text(
-          'Appointments',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          "View Appointments",
+          style: TextStyle(color: Colors.white, fontSize: 26),
         ),
+        centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: appointments.length,
-        itemBuilder: (context, index) {
-          return AppointmentTile(appointment: appointments[index]);
-        },
-      ),
+      body: FutureBuilder<QuerySnapshot>(
+          future: controller.getAppointments(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              var data = snapshot.data!.docs;
+              return Padding(
+                padding: EdgeInsets.all(5),
+                child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    onTap: (){
+                      //Get.to(appointmentdetailView);
+                    },
+                    leading: CircleAvatar(),
+                    title: Text("Doctor  Name"),
+                    subtitle: Text("${data[index]['appointmentTime']} - ${data[index]['appointmentDay']}"),
+                  );
+                }),
+              );
+            }
+          }),
     );
   }
-}
-
-class AppointmentTile extends StatelessWidget {
-  final Appointment appointment;
-
-  const AppointmentTile({Key? key, required this.appointment}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-      child: Material(
-        elevation: 4,
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        child: ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          tileColor: Colors.blue.shade50,
-          leading: CircleAvatar(
-            radius: 25.r,
-            backgroundImage: NetworkImage(appointment.avatarUrl),
-          ),
-          title: Text(
-            appointment.doctorName,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.sp,
-            ),
-          ),
-          subtitle: Text(
-            appointment.appointmentTime,
-            style: TextStyle(
-              fontSize: 14.sp,
-              color: Colors.grey.shade600,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Appointment {
-  final String doctorName;
-  final String appointmentTime;
-  final String avatarUrl;
-
-  Appointment({
-    required this.doctorName,
-    required this.appointmentTime,
-    required this.avatarUrl,
-  });
 }

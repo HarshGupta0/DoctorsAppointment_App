@@ -45,7 +45,7 @@ class NavScreen extends StatelessWidget {
       HomeView(),
       CategoryScreen(),
       CategoryScreen(),
-      AppointmentsScreen(),
+      AppointmentView(),
       SettingsView(),
 
     ];
