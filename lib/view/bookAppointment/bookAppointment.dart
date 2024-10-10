@@ -1,12 +1,10 @@
+import 'package:doctors_appointment/constants/DoctorInfo.dart';
 import 'package:doctors_appointment/controllers/appointmentController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 class BookAppointmentScreen extends StatefulWidget {
   final String docId;
   final String docName;
-
   const BookAppointmentScreen(
       {Key? key, required this.docId, required this.docName})
       : super(key: key);
@@ -128,6 +126,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   // Pass the selected day and time along with other details to the controller
                   controller.bookAppointment(
                     widget.docId,
+                    widget.docName,
                     context,
                     // selectedDay!,
                     // selectedTime!,
