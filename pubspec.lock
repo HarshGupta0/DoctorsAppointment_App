@@ -329,13 +329,13 @@ packages:
     source: hosted
     version: "0.12.1"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
-      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      sha256: a2bbf9d017fcced29139daa8ed2bba4ece450ab222871df93ca9eec6f80c34ba
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   http_parser:
     dependency: transitive
     description:
@@ -492,10 +492,10 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
+      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.8"
   pointycastle:
     dependency: transitive
     description:
@@ -641,18 +641,18 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: c512655380d241a337521703af62d2c122bf7b77a46ff7dd750092aa9433499c
+      sha256: "21b704ce5fa560ea9f3b525b43601c678728ba46725bab9b01187b4831377ed3"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.4"
+    version: "6.3.0"
   url_launcher_android:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "507dc655b1d9cb5ebc756032eb785f114e415f91557b73bf60b7e201dfedeb2f"
+      sha256: "17cd5e205ea615e2c6ea7a77323a11712dffa0720a8a90540db57a01347f9ad9"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.2"
+    version: "6.3.2"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -681,10 +681,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_platform_interface
-      sha256: "4aca1e060978e19b2998ee28503f40b5ba6226819c2b5e3e4d1821e8ccd92198"
+      sha256: "552f8a1e663569be95a8190206a38187b531910283c3e982193e4f2733f01029"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.2"
   url_launcher_web:
     dependency: transitive
     description:
@@ -741,6 +741,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  webview_flutter:
+    dependency: "direct main"
+    description:
+      name: webview_flutter
+      sha256: d81b68e88cc353e546afb93fb38958e3717282c5ac6e5d3be4a4aef9fc3c1413
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.0"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      sha256: "0d21cfc3bfdd2e30ab2ebeced66512b91134b39e72e97b43db2d47dda1c4e53a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.16.3"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      sha256: d937581d6e558908d7ae3dc1989c4f87b786891ab47bb9df7de548a151779d8d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.10.0"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      sha256: "4d062ad505390ecef1c4bfb6001cd857a51e00912cc9dfb66edb1886a9ebd80c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.10.2"
   win32:
     dependency: transitive
     description:

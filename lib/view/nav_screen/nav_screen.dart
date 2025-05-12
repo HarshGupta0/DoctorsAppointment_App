@@ -1,5 +1,5 @@
-import 'package:doctors_appointment/view/SignUp_view/SignUp_view.dart';
 import 'package:doctors_appointment/view/home_view/home_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../Categary_Screen/Categary_Screen.dart';
@@ -44,9 +44,10 @@ class NavScreen extends StatelessWidget {
     return [
       HomeView(),
       CategoryScreen(),
-      CategoryScreen(),
       AppointmentView(),
       SettingsView(),
+      SettingsView(),
+      // ChatScreen()
 
     ];
   }
@@ -66,12 +67,6 @@ class NavScreen extends StatelessWidget {
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person_outline),
-        title: 'Doctor',
-        activeColorPrimary: Colors.white,
-        inactiveColorPrimary: Colors.white,
-      ),
-      PersistentBottomNavBarItem(
         icon: Icon(Icons.book_outlined),
         title: 'Appointment',
         activeColorPrimary: Colors.white,
@@ -80,6 +75,12 @@ class NavScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.settings_outlined),
         title: 'Profile',
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: Colors.white,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.chat_bubble_text),
+        title: 'Ask Me',
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
       ),

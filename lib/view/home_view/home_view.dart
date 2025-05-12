@@ -4,6 +4,7 @@ import 'package:doctors_appointment/controllers/home_controller.dart';
 import 'package:doctors_appointment/controllers/settingsController.dart';
 import 'package:doctors_appointment/view/doctor_profile_screen/doctorProfile.dart';
 import 'package:doctors_appointment/widgets/CustomTextField.dart';
+import 'package:doctors_appointment/widgets/common_bottom.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -255,7 +256,9 @@ class HomeView extends StatelessWidget {
                     shrinkWrap: false,
                     itemBuilder: (BuildContext context, index) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                           showPathologyBottomSheet(context);
+                        },
                         child: Container(
                           height: 120.h,
                           width: 90.w,
@@ -292,26 +295,6 @@ class HomeView extends StatelessWidget {
                         ),
                       );
                     }),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 8.w),
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      child:Text("View All",
-                          style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.lightBlue.shade200)),
-                      style: ButtonStyle(
-                        minimumSize:
-                        MaterialStateProperty.all(Size(80.w, 30.h)),
-                      ),
-                    ),
-                  ),
-                ],
               ),
               const SizedBox(
                 height: 20,
